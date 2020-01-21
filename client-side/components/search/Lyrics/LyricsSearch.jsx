@@ -13,17 +13,21 @@ export default ({ performSearch }) => {
     return (
         <form 
             className="lyrics-search"
-            onSubmit={formik.handleSubmit}>
+            onSubmit={formik.handleSubmit}
+        >
             <h2 className="lyrics-search__title"> Lyrics searching  </h2>
-            <input 
-                className="lyrics-search__input"
-                id="lyrics"
-                name="lyrics"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.lyrics}
-            />
-            <button className="lyrics-search__button" type="submit"> Search </button>
+            <div className="form-group">
+                <label for="lyrics">Lyrics</label>
+                <input 
+                    className="lyrics-search__input form-control"
+                    id="lyrics"
+                    name="lyrics"
+                    type="text"
+                    onChange={formik.handleChange}
+                    value={formik.values.lyrics}
+                />
+                <button className="lyrics-search__button btn btn-info" type="submit"> Search </button>
+            </div>
         </form>
     )
 } 

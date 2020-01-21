@@ -1,32 +1,22 @@
-const defaultConfig = {
-    cache: 'no-cache', 
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    redirect: 'follow', 
-    referrer: 'no-referrer', 
+const escapeCors = url => `https://cors-anywhere.herokuapp.com/${url}`;
+
+const processUrl = url =>  {
+    url.searchParams.set('api_token', 'fde56d97d8c215316c1ba9f264e86c59');
+    return escapeCors(url.toString())
 }
 
+const  _fetch = (url, config = {}) => 
+    fetch(processUrl(url), config);
+
 export default {
-    get: (url = '') => 
-        fetch(url).then(res => res.json()),
-    post: (url = '', data = {}) => 
-        fetch(url, {
+    auddioUrl: 'https://api.audd.io/',
+    get: (url = new URL()) => 
+        _fetch(url)
+        .then(response => response.json()),
+    post: (url  = new URL(), data = {}) => 
+        _fetch(url, {
             method: 'POST',
-            body: JSON.stringify(data), 
-            ...defaultConfig,
+            body: data, 
         })
         .then(response => response.json()),
-    put: (url = '', data = {}) => 
-        fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(data), 
-            ...defaultConfig,
-        })
-        .then(response => response.json()),
-    delete: (url = '') => 
-        fetch(url, {
-            method: 'DELETE',
-            ...defaultConfig,
-        })
 }

@@ -1,11 +1,25 @@
 import React from 'react';
 
-import record from './service/audioRecorder';
+import audio from 'utils/audio';
 
-export default ({ performSearch }) => {
+
+
+export default ({ performSearch, startHumming, isHumming }) => {
+    const handleClick = () => {
+        if(!isHumming) {
+            startHumming();
+            audio.record(performSearch, 10000);
+        }
+    }
     return (
         <div className="humming-search">
-            <button className="humming-search__button" onClick={ () => record(performSearch, 5000) }> Start Record </button>
+            <button 
+                className="humming-search__button btn btn-info" 
+                onClick={ handleClick }
+                disabled={isHumming}
+            >
+                { isHumming ? 'Recording' : 'Start Record' } 
+            </button>
         </div>
     )
 } 

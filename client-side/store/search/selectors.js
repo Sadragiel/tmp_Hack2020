@@ -3,5 +3,6 @@ export default storeName => {
 
     return {
         getFormattedResult: state => getStore(state).formattedResult,
+        isHumming: state => getStore(state).isHumming,
     };
 }
