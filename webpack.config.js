@@ -25,6 +25,7 @@ module.exports = {
     alias: {
       'store': path.resolve(__dirname, './client-side/store'),
       'utils': path.resolve(__dirname, './client-side/utils'),
+      'components': path.resolve(__dirname, './client-side/components'),
     },
     extensions: ['.js', '.jsx']
   },
